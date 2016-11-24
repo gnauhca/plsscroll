@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>plsscroll</title>
+<style>
+    body, html {
+        width: 100%;
+        height: 100%;
+    }
+.slider-container {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+}
+.slider-item {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.slider-item.moving {
+    display: block;
+}
+.slider-item.active {
+    display: block;
+    z-index: 2;
+}
+
+
+.slider {
+    box-sizing: border-box;
+    font-size: 60px; 
+    text-align: center;
+    line-height: 500px;
+    border: 1px dashed red;
+}
+
+
+.down-up-pos-current-final {
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s;
+}
+.down-up-pos-next-init {
+    z-index: 2;
+    transform: translateY(100%);
+}
+.down-up-pos-next-final {
+    transform: none;
+    transition: all 1s;
+}
+
+.controller {
+    position: fixed;
+    width: 50px;
+    top: 50%;
+    right: 30px;
+    transform: translate(0, -50%);
+}
+.controller div {
+    width: 15px; 
+    height: 15px;
+    margin: 10px;
+    background: #aaa;
+    cursor: pointer;
+}
+.controller div.active {
+    background: #eee;
+}
+</style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slider">1</div>
+        <div class="slider">2</div>
+        <div class="slider">3</div>
+        <div class="slider">4</div>
+        <div class="slider">5</div>
+        <div class="slider">6</div>
+        <div class="slider">7</div>
+        <div class="slider">8</div>
+        <div class="slider">9</div>
+        <div class="slider">10</div>
+    </div>
+    <div class="controller"></div>
+
+<script src=".\node_modules\jquery\dist\jquery.min.js"></script>
+<script src=".\node_modules\bootstrap\js\transition.js"></script>
+<script src=".\node_modules\alloyfinger\alloy_finger.js"></script>
+<script src="./player.js"></script>
+<script src="./effects.js"></script>
+<script>
+var player = new Player('.slider-container', '.slider');
+player.setupEffects(effects);
+
+var $controller = $('.controller');
+var $controllerItems;
+for (var i = 0; i < player.count; i++) {
+    $controller.append('<div data-index="' + i + '"></div>');
+}
+$controllerItems = $controller.find('div');
+$controllerItems.eq(player.currentIndex).addClass('active');
+
+player.addUpdateListener(function(_player) {
+    $controllerItems.eq(player.currentIndex).addClass('active').siblings().removeClass('active');
+
+});
+$controller.on('click', 'div', function() {
+    var index = $(this).data('index');
+    player.setIndex(index);
+});
+
+</script>
+</body>
+</html>
