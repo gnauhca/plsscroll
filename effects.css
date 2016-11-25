@@ -1,0 +1,134 @@
+.down-up-pos-current-final {
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s;
+}
+.down-up-pos-next-init {
+    z-index: 2;
+    transform: translateY(100%);
+}
+.down-up-pos-next-final {
+    transform: none;
+    transition: all 1s;
+}
+.down-up-neg-current-final {
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s;
+}
+.down-up-neg-next-init {
+    z-index: 2;
+    transform: translateY(-100%);
+}
+.down-up-neg-next-final {
+    transform: none;
+    transition: all 1s;
+}
+
+/* rotate */
+.rotate-pos-current-final {
+    z-index: 1;
+    opacity: 0;
+    transform: rotateX(20deg);
+    transition: all 0.8s;
+}
+.rotate-pos-next-init {
+    z-index: 2;
+    opacity: 0;
+    transform: rotateX(20deg);
+}
+.rotate-pos-next-final {
+    transform: none;
+    opacity: 1;
+    transition: all 0.8s 0.2s;
+}
+
+.rotate-neg-current-final {
+    z-index: 1;
+    opacity: 0;
+    transform: rotateX(-20deg);
+    transition: all 0.8s;
+}
+.rotate-neg-next-init {
+    z-index: 2;
+    opacity: 0;
+    transform: rotateX(-20deg);
+}
+.rotate-neg-next-final {
+    transform: none;
+    opacity: 1;
+    transition: all 0.8s 0.2s;
+}
+
+/* pull */
+.pull-pos-current-final {
+    z-index: 1;
+    transform-origin: center top;
+    animation: pull-pos 1s both;
+}
+@keyframes pull-pos {
+
+    50% {
+        transform: rotate(-5deg);
+    }
+    40% {
+        transform: rotate(20deg);
+    }
+    30% {
+        transform: rotate(-15deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    10% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: translateY(220%) rotate(-5deg);;
+    }
+
+}
+.pull-pos-next-init {
+
+}
+.pull-pos-next-final {
+    
+}
+
+.pull-neg-current-final {
+    z-index: 1;
+}
+@keyframes pull-neg {
+        
+    0% {
+        transform: translateY(-220%);
+    }
+
+    10% {
+        transform: none;
+    }
+    20% {
+        transform: rotate(20deg);
+    }
+    30% {
+        transform: rotate(-10deg);
+    }
+    40% {
+        transform: rotate(6deg);
+    }
+    50% {
+        transform: rotate(-3deg);
+    }
+
+}
+.pull-neg-next-init {
+
+}
+.pull-neg-next-final {
+    z-index: 12!important;
+    transform-origin: center top;
+    animation: pull-neg 1s both;
+}

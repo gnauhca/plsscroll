@@ -3,16 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>plsscroll</title>
+<link rel="stylesheet" href="./effects.css">
 <style>
-    body, html {
-        width: 100%;
-        height: 100%;
-    }
+* {margin: 0; padding: 0;}
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 .slider-container {
     position: relative;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
 .slider-item {
     display: none;
@@ -22,6 +27,9 @@
     left: 0;
     width: 100%;
     height: 100%;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .slider-item.moving {
     display: block;
@@ -30,6 +38,17 @@
     display: block;
     z-index: 2;
 }
+.slider-item:nth-child(1) {background-image: url(./images/1.jpg)}
+.slider-item:nth-child(2) {background-image: url(./images/2.jpg)}
+.slider-item:nth-child(3) {background-image: url(./images/3.jpg)}
+.slider-item:nth-child(4) {background-image: url(./images/4.jpg)}
+.slider-item:nth-child(5) {background-image: url(./images/5.jpg)}
+.slider-item:nth-child(6) {background-image: url(./images/6.jpg)}
+.slider-item:nth-child(7) {background-image: url(./images/7.jpg)}
+.slider-item:nth-child(8) {background-image: url(./images/8.jpg)}
+.slider-item:nth-child(9) {background-image: url(./images/9.jpg)}
+.slider-item:nth-child(10) {background-image: url(./images/10.jpg)}
+
 
 
 .slider {
@@ -37,24 +56,8 @@
     font-size: 60px; 
     text-align: center;
     line-height: 500px;
-    border: 1px dashed red;
 }
 
-
-.down-up-pos-current-final {
-    z-index: 1;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 1s;
-}
-.down-up-pos-next-init {
-    z-index: 2;
-    transform: translateY(100%);
-}
-.down-up-pos-next-final {
-    transform: none;
-    transition: all 1s;
-}
 
 .controller {
     position: fixed;
@@ -76,6 +79,9 @@
 </style>
 </head>
 <body>
+
+
+
 
     <div class="slider-container">
         <div class="slider">1</div>
